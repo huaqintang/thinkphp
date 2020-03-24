@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>新增数据</title>
+    <link rel="stylesheet" href="/public/static/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/public/static/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.form.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/teacher.js"></script>
+</head>
+
+    <body class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="{:url('insert')}" method="post" id="saveDataForm" target="nm_iframe" onsubmit="return saveDataForm();">
+                    <label>姓名:</label>
+                    <input type="text" name="name" required/>
+                    <label>用户名:</label>
+                    <input type="text" name="username" required/>
+                    <label>性别:</label>
+                    <select name="sex">
+                        <option value="0">男</option>
+                        <option value="1">女</option>
+                    </select>
+                    <label>邮箱:</label>
+                    <input type="email" name="email" />
+                    <button type="submit">保存</button>
+                </form>
+            </div>
+
+            <!-- iframe为跳转不提交,如果有数据需要提交的话就把这Iframe标签移除就可以 -->
+            <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+
+        </div>
+
+    <script>
+        function saveDataForm() {
+            $("#saveDataForm").ajaxSubmit(function(message) {
+                $("input").val("");
+            });
+            return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+        }
+    </script>
+
+    </body>
+
+</html>
